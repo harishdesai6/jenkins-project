@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from your SCM (Git, etc.)
+                https://github.com/harishdesai6/jenkins-project.git
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                echo 'Compiling Java file...'
+                sh 'javac HelloWorld.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                echo 'Running Java program...'
+                sh 'java HelloWorld'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+    }
+}
